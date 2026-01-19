@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from './shared/NavBar'
 import FilterCard from './FilterCard'
 import Job from './Job'
+import Footer from './shared/Footer';
 
 
 
@@ -11,6 +12,7 @@ const Jobs = () => {
     return (
         <div>
             <NavBar />
+
             <div className='max-w-7xl mx-auto mt-5'>
                 <div className='flex gap-5'>
                     <div className='w-20%'>
@@ -39,7 +41,7 @@ const Jobs = () => {
             </div>
 
 
-
+            <Footer />
         </div>
     )
 }
