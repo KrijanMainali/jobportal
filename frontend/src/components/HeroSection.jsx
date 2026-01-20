@@ -8,7 +8,7 @@ const HeroSection = () => {
             <div className='flex flex-col gap-5 my-10'>
                 <span className='px-4 mx-auto rounded-full bg-gray-100 text-[#f83002] font-medium'>No.1 Job Hunt Website </span>
                 <h1 className='text-5xl font-bold'>Search,Apply & <br />Get Your <span className='text-[#6a38c2]'>Dream Jobs</span></h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur dolorem in quod cum. Impedit!</p>
+                <p>Find verified jobs, apply instantly, and get matched with opportunities that fit your skills.</p>
                 <div className='flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 m-auto '>
                     <input 
                     type="text" 
