@@ -24,7 +24,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const PORT =  config.port;
+const PORT =  config.PORT;
 
 app.use('/api/v1/user', userRoute);
 

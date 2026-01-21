@@ -1,6 +1,8 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import cloudinary from "../utils/cloudinary.js";
+import getDataUri from "../utils/datauri.js";
 
 export const register = async (req, res) => {
     try {
@@ -11,6 +13,10 @@ export const register = async (req, res) => {
                 success: false
             });
         };
+
+        const file = req.file;
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
         const user = await User.findOne({ email });
 
@@ -28,7 +34,10 @@ export const register = async (req, res) => {
             email,
             phoneNumber,
             password: hashedPassword,
-            role
+            role,
+            profile: {
+                profilePhoto: cloudResponse.secure_url,
+            }
         });
 
         return res.status(201).json({
@@ -46,7 +55,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
-        
+
         if (!email || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
@@ -119,6 +128,20 @@ export const updateProfile = async (req, res) => {
     try {
         const { fullname, phoneNumber, bio, skills, email } = req.body;
         const file = req.file;
+        if (!file) {
+            return res.status(400).json({
+                success: false,
+                message: "No resume uploaded"
+            });
+        }
+
+
+        //cloudinary
+
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content)
+
+
         if (!fullname || !phoneNumber || !email || !bio || !skills) {
             return res.status(400).json({
                 message: "some value is missing",
@@ -147,20 +170,27 @@ export const updateProfile = async (req, res) => {
             user.profile.skills = skillsArray
 
 
+        //resume 
+        if (cloudResponse) {
+            user.profile.resume = cloudResponse.secure_url
+            user.profile.resumeOriginalName = file.originalname
+        }
+
+
         await user.save();
 
-         user = {
-                _id: user._id,
-                fullname: user.fullname,
-                email: user.email,
-                phoneNumber: user.phoneNumber,
-                role: user.role,
-                profile: user.profile
-            }
+        user = {
+            _id: user._id,
+            fullname: user.fullname,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            role: user.role,
+            profile: user.profile
+        }
 
         return res.status(200).json({
-            message : "useer profile updated successfully",
-            success : true,
+            message: "useer profile updated successfully",
+            success: true,
             user
         })
     } catch (error) {
