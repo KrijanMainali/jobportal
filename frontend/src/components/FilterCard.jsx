@@ -19,7 +19,8 @@ const filterData = [
 
 const FilterCard = () => {
     return (
-        <div className='w-full bg-white p-3 rounded-md'>
+       
+        <div className='w-full bg-white p-3 rounded-md "bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300'>
             <h1 className='font-bold text-lg'>Filter Jobs</h1>
             <hr className='mt-3' />
             <RadioGroup>

@@ -10,6 +10,7 @@ import { toast } from 'sonner'
 import axios from 'axios'
 import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
+import DarkMode from '../ui/darkMode'
 
 const NavBar = () => {
    
@@ -34,13 +35,15 @@ const NavBar = () => {
     }
 
     return (
-        <div className='bg-white'>
+        <div className="bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
                 <div>
                     <h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Mitra</span></h1>
                 </div>
                 <div className='flex items-center gap-12'>
                     <ul className='flex font-medium items-center gap-5'>
+                        <DarkMode/>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/jobs">Jobs</Link></li>
                         <li><Link to="/browse">Browse</Link></li>
