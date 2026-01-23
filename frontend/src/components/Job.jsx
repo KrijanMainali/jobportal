@@ -9,7 +9,7 @@ const Job = () => {
     const navigate = useNavigate();
     const jobId = "abcdefgh";
     return (
-        <div className='p-5 rounded-md shadow-xl bg-white border border-gray-100'>
+        <div className='p-5 rounded-md shadow-xl bg-white border border-gray-100 "bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300'>
             <div className='flex items-center justify-between'>
                 <p className='text-sm text-gray-500'>2 days ago</p>
                 <Button variant='outline' className="rounded-full" size='icon'><Bookmark /></Button>

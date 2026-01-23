@@ -5,7 +5,7 @@ import { Button } from './ui/button'
 const JobDescription = () => {
     const isApplied = true;
     return (
-        <div className='max-w-7xl mx-auto my-10'>
+        <div className='max-w-7xl mx-auto my-10  '>
             <div className='flex items-center justify-between '>
                 <div>
                     <h1 className='font-bold text-xl'>Frontend Developer</h1>
@@ -24,13 +24,13 @@ const JobDescription = () => {
             </div>
             <h1 className='border-b-2 border-b-gray-300 font-medium py-4'>Job Description</h1>
             <div className='my-4 '>
-                <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-gray-800'>Frontend Developer</span></h1>
-                <h1 className='font-bold my-1'>location: <span className='pl-4 font-normal text-gray-800'>Kathmandu</span></h1>
-                <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal text-gray-800'>Lorem ipsum dolor sit amet.</span></h1>
-                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800'>3 yrs</span></h1>
-                <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal text-gray-800'>25LPA</span></h1>
-                <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal text-gray-800'> 5</span></h1>
-                <h1 className='font-bold my-1'>Posted date: <span className='pl-4 font-normal text-gray-800'>20-01-2026</span></h1>
+                <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-purple-700 dark:text-purple-300'>Frontend Developer</span></h1>
+                <h1 className='font-bold my-1'>location: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>Kathmandu</span></h1>
+                <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>Lorem ipsum dolor sit amet.</span></h1>
+                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>3 yrs</span></h1>
+                <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>25LPA</span></h1>
+                <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'> 5</span></h1>
+                <h1 className='font-bold my-1'>Posted date: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>20-01-2026</span></h1>
             </div>
 
         </div>
