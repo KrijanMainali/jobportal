@@ -3,12 +3,13 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/f
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-gray-200 text-gray-700 mt-20">
+    <footer className="bg-white border-t border-gray-200 mt-20  text-black
+  dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <div className="max-w-6xl mx-auto py-12 px-4 md:px-6 grid md:grid-cols-3 gap-8">
-        
+
         {/* About Section */}
         <div>
-           <h1 className='text-xl font-bold mb-4'>Job<span className='text-[#F83002]'>Mitra</span></h1>
+          <h1 className='text-xl font-bold mb-4'>Job<span className='text-[#F83002]'>Mitra</span></h1>
           <p className="text-gray-600">
             JobMitra helps you find and apply to your dream jobs in Nepal easily. Stay updated with latest job openings and opportunities.
           </p>
