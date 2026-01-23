@@ -1,6 +1,8 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import cloudinary from "../utils/cloudinary.js";
+import getDataUri from "../utils/datauri.js";
 
 export const register = async (req, res) => {
     try {
@@ -11,6 +13,10 @@ export const register = async (req, res) => {
                 success: false
             });
         };
+
+        const file = req.file;
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
         const user = await User.findOne({ email });
 
@@ -28,7 +34,10 @@ export const register = async (req, res) => {
             email,
             phoneNumber,
             password: hashedPassword,
-            role
+            role,
+            profile: {
+                profilePhoto: cloudResponse.secure_url,
+            }
         });
 
         return res.status(201).json({
@@ -46,7 +55,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
-        
+
         if (!email || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
@@ -119,9 +128,14 @@ export const updateProfile = async (req, res) => {
     try {
         const { fullname, phoneNumber, bio, skills, email } = req.body;
         const file = req.file;
-       
-        let skillsArray;
-        if(skills) skillsArray = skills.split(",");
+        if (!fullname || !phoneNumber || !email || !bio || !skills) {
+            return res.status(400).json({
+                message: "some value is missing",
+                success: false
+            });
+        };
+
+        const skillsArray = skills.split(",");
         const userId = req.id;   // from middleware auth
         let user = await User.findById(userId);
 
@@ -135,26 +149,27 @@ export const updateProfile = async (req, res) => {
 
         // updated user data
 
-        if (fullname) user.fullname = fullname
-        if (email) user.email = email
-        if (phoneNumber) user.phoneNumber = phoneNumber
-        if (bio) user.profile.bio = bio
-        if (skills) user.profile.skills = skillsArray
+        user.fullname = fullname,
+            user.email = email,
+            user.phoneNumber = phoneNumber,
+            user.profile.bio = bio,
+            user.profile.skills = skillsArray
+
 
         await user.save();
 
-         user = {
-                _id: user._id,
-                fullname: user.fullname,
-                email: user.email,
-                phoneNumber: user.phoneNumber,
-                role: user.role,
-                profile: user.profile
-            }
+        user = {
+            _id: user._id,
+            fullname: user.fullname,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            role: user.role,
+            profile: user.profile
+        }
 
         return res.status(200).json({
-            message : "useer profile updated successfully",
-            success : true,
+            message: "useer profile updated successfully",
+            success: true,
             user
         })
     } catch (error) {
