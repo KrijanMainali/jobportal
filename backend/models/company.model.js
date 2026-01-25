@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const comapnySchema = new mongoose.Schema({
+const companySchema = new mongoose.Schema({
 
     name: {
         type: String,
@@ -26,6 +26,6 @@ const comapnySchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-const Company = mongoose.model("Company", comapnySchema);
+const Company = mongoose.model("Company", companySchema);
 
 export default Company;
