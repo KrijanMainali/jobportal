@@ -122,38 +122,41 @@ export const logout = async (req, res) => {
 }
 
 
-
 export const updateProfile = async (req, res) => {
-
     try {
-        const { fullname, phoneNumber, bio, skills, email } = req.body;
-        const file = req.file;
-        if (!fullname || !phoneNumber || !email || !bio || !skills) {
-            return res.status(400).json({
-                message: "some value is missing",
-                success: false
-            });
-        };
+        const { fullname, email, phoneNumber, bio, skills } = req.body;
 
-        const skillsArray = skills.split(",");
-        const userId = req.id;   // from middleware auth
+        const file = req.file;
+        // cloudinary 
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+
+
+        let skillsArray;
+        if (skills) {
+            skillsArray = skills.split(",");
+        }
+        const userId = req.id; // middleware authentication
         let user = await User.findById(userId);
 
         if (!user) {
-
             return res.status(400).json({
-                message: "user not found",
+                message: "User not found.",
                 success: false
             })
         }
+        // updating data
+        if (fullname) user.fullname = fullname
+        if (email) user.email = email
+        if (phoneNumber) user.phoneNumber = phoneNumber
+        if (bio) user.profile.bio = bio
+        if (skills) user.profile.skills = skillsArray
 
-        // updated user data
-
-        user.fullname = fullname,
-            user.email = email,
-            user.phoneNumber = phoneNumber,
-            user.profile.bio = bio,
-            user.profile.skills = skillsArray
+        // resume
+        if (cloudResponse) {
+            user.profile.resume = cloudResponse.secure_url // save the cloudinary url
+            user.profile.resumeOriginalName = file.originalname // Save the original file name
+        }
 
 
         await user.save();
@@ -168,9 +171,9 @@ export const updateProfile = async (req, res) => {
         }
 
         return res.status(200).json({
-            message: "useer profile updated successfully",
-            success: true,
-            user
+            message: "Profile updated successfully.",
+            user,
+            success: true
         })
     } catch (error) {
         console.log(error);

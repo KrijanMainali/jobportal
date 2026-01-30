@@ -8,14 +8,16 @@ import { Label } from './ui/label'
 import AppliedJobTable from './AppliedJobTable'
 import UpdateProfileDialog from './UpdateProfileDialog'
 import { useSelector } from 'react-redux'
+import useGetAppliedJobs from '@/hooks/useGetAppliedJobs'
 
 // const skills = ["html", "Javascript", "CSS", "Graphic Designing"]
 
 const Profile = () => {
-     const isResume = true;
+    const isResume = true;
+    useGetAppliedJobs();
 
-    const [open , setOpen] = useState (false);
-    const {user} = useSelector(store=>store.auth);
+    const [open, setOpen] = useState(false);
+    const { user } = useSelector(store => store.auth);
 
     return (
         <div>
@@ -33,7 +35,7 @@ const Profile = () => {
                         </div>
 
                     </div>
-                    <Button onClick={() => setOpen(true)}   className="text-right" variant='outline'><Pen /></Button>
+                    <Button onClick={() => setOpen(true)} className="text-right" variant='outline'><Pen /></Button>
                 </div>
                 <div className='my-5'>
                     <div className='flex items-center gap-3 my-2'>
@@ -51,7 +53,7 @@ const Profile = () => {
                     <h1 className='font-bold my-2'>Skills</h1>
                     <div className='flex items-center gap-1'>
                         {
-                           user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <Badge key={index}>{item}</Badge>) : <span>NA</span>
+                            user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <Badge key={index}>{item}</Badge>) : <span>NA</span>
                         }
                     </div>
 
