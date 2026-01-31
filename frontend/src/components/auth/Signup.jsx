@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../shared/NavBar'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
@@ -23,10 +23,10 @@ const Signup = () => {
         file: ""
     });
 
-    const {loading} = useSelector(store=>store.auth);
+    const { loading,user} = useSelector(store => store.auth);
     const dispatch = useDispatch();
 
-    const nevigate = useNavigate();
+    const navigate = useNavigate();
 
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
@@ -55,19 +55,23 @@ const Signup = () => {
                 withCredentials: true,
             });
             if (res.data.success) {
-                nevigate("/login");
+                navigate("/login");
                 toast.success(res.data.message);
             }
 
         } catch (error) {
             toast.error(error.response.data.message);
 
-        }finally{
+        } finally {
             dispatch(setLoading(false));
         }
 
     }
-
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [])
     return (
         <div>
             <NavBar />
@@ -148,7 +152,7 @@ const Signup = () => {
                             />
                         </div>
                     </div>
-                     {
+                    {
                         loading ? <Button className=" w-full my-4"><Loader2 className='mr-2 h-4 animate-spin ' />Please Wait</Button> : <Button type="submit" className="w-full my-4">Signup</Button>
 
                     }
