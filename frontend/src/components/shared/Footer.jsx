@@ -10,7 +10,7 @@ const Footer = () => {
         {/* About Section */}
         <div>
           <h1 className='text-xl font-bold mb-4'>Job<span className='text-[#F83002]'>Mitra</span></h1>
-          <p className="text-gray-600">
+          <p className="text-gray-900 dark:text-gray-100">
             JobMitra helps you find and apply to your dream jobs in Nepal easily. Stay updated with latest job openings and opportunities.
           </p>
         </div>
@@ -34,9 +34,9 @@ const Footer = () => {
 
         {/* Contact & Social */}
         <div>
-          <h2 className="text-lg font-semibold mb-4">Contact</h2>
-          <p className="text-gray-600">Email: info@jobmitra.com</p>
-          <p className="text-gray-600 mt-2">Phone: +977-9800000000</p>
+          <h2 className="text-gray-900 dark:text-gray-100">Contact</h2>
+          <p className="text-gray-900 dark:text-gray-100">Email: info@jobmitra.com</p>
+          <p className="text-gray-900 dark:text-gray-100">Phone: +977-9800000000</p>
           <div className="flex space-x-4 mt-4">
             <a href="#" className="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full hover:bg-purple-700 transition">
               <FaFacebookF />
@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-200 mt-10 text-center py-4 text-gray-500 text-sm">
+      <div className="border-t border-gray-200 mt-10 text-center py-4 text-gray-900 dark:text-gray-100">
         &copy; {new Date().getFullYear()} JobMitra. All rights reserved.
       </div>
     </footer>
