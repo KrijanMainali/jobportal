@@ -11,7 +11,8 @@ import axios from 'axios'
 import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 import DarkMode from '../ui/darkMode'
-import RecommendationPage from '../RecommendationPage'
+
+
 
 const NavBar = () => {
 
@@ -40,7 +41,7 @@ const NavBar = () => {
 
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
                 <div>
-                    <h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Mitra</span></h1>
+                    <h1 className='text-2xl font-bold'><Link to='/'>Job<span className='text-[#F83002]'>Mitra</span></Link></h1>
                 </div>
                 <div className='flex items-center gap-12'>
                     <ul className='flex font-medium items-center gap-5'>
