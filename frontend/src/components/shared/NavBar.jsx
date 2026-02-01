@@ -11,6 +11,7 @@ import axios from 'axios'
 import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 import DarkMode from '../ui/darkMode'
+import RecommendationPage from '../RecommendationPage'
 
 const NavBar = () => {
 
@@ -46,7 +47,7 @@ const NavBar = () => {
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
-                                    <DarkMode/> <li><Link to="/admin/companies">Companies</Link></li>
+                                    <DarkMode /> <li><Link to="/admin/companies">Companies</Link></li>
                                     <li><Link to="/admin/jobs">Jobs</Link></li>
                                 </>
                             ) : (
@@ -55,9 +56,16 @@ const NavBar = () => {
                                     <li><Link to="/">Home</Link></li>
                                     <li><Link to="/jobs">Jobs</Link></li>
                                     <li><Link to="/browse">Browse</Link></li>
+                                    {user && user.role === 'student' && (
+                                        <li>
+                                            <Link to="/getRecommendations">Recommendations</Link>
+                                        </li>
+                                    )}
                                 </>
+
                             )
                         }
+
 
                     </ul>
                     {

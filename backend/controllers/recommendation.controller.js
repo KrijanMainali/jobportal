@@ -28,7 +28,7 @@ export const recommendJobs = async (req, res) => {
 
       //  EXPERIENCE MATCH
 
-      const userExp = user.experienceLevel;
+      const userExp = user.experience;
       const jobExp = job.experienceLevel;
 
       if (userExp >= jobExp) {

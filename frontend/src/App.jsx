@@ -15,6 +15,7 @@ import AdminJobs from './components/admin/AdminJobs'
 import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import PostJob from './components/admin/PostJobs'
+import RecommendationPage from './components/RecommendationPage'
 
 const appRouter = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const appRouter = createBrowserRouter([
     path: '/profile',
     element: <Profile/>
   },
+  {
+    path: "/getRecommendations",
+    element : <RecommendationPage/>
+  },
 
   //admin
 
@@ -71,7 +76,8 @@ const appRouter = createBrowserRouter([
   {
     path:"/admin/jobs/:id/applicants",
     element:<ProtectedRoute><Applicants/></ProtectedRoute> 
-  },
+  }
+  
 ])
 
 function App() {
