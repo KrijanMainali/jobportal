@@ -35,8 +35,8 @@ const Footer = () => {
         {/* Contact & Social */}
         <div>
           <h2 className="text-gray-900 dark:text-gray-100">Contact</h2>
-          <p className="text-gray-900 dark:text-gray-100">Email: info@jobmitra.com</p>
-          <p className="text-gray-900 dark:text-gray-100">Phone: +977-9800000000</p>
+          <p className="text-gray-900 dark:text-gray-100">Email:<a href="mailto:info@jobmitra.com"> info@jobmitra.com</a></p>
+          <p className="text-gray-900 dark:text-gray-100">tel: <a href="tel:+9779812345678">+9779812345678</a></p>
           <div className="flex space-x-4 mt-4">
             <a href="#" className="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full hover:bg-purple-700 transition">
               <FaFacebookF />

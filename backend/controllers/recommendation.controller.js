@@ -51,7 +51,7 @@ export const recommendJobs = async (req, res) => {
 
       //   SALARY BONUS
 
-      if (job.salary && job.salary > 0) {
+      if (job.salary && job.salary >0) {
         score += 2;
       }
 
@@ -59,6 +59,14 @@ export const recommendJobs = async (req, res) => {
 
       if (job.position && job.position > 10) {
         score += 5;
+      }
+
+      if (job.salary && job.salary>= user.expectedSalary){
+        score +=10;
+      }
+
+      if (job.salary && job.salary < user.expectedSalary){
+        score -=5;
       }
 
       return {

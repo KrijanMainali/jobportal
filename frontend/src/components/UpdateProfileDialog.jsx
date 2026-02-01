@@ -21,7 +21,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         bio: user?.profile?.bio || "",
         skills: user?.profile?.skills?.map(skill => skill) || "",
         file: user?.profile?.resume || "",
-        experience:user?.experience || "",
+        experience: user?.experience || "",
+        expectedSalary: user?.expectedSalary || ""
     });
     const dispatch = useDispatch();
 
@@ -43,6 +44,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         formData.append("bio", input.bio);
         formData.append("skills", input.skills);
         formData.append("experience", input.experience);
+        formData.append("expectedSalary", input.expectedSalary);
         if (input.file) {
             formData.append("file", input.file);
         }
@@ -61,7 +63,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
-        } finally{
+        } finally {
             setLoading(false);
         }
         setOpen(false);
@@ -111,7 +113,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     className="col-span-3"
                                 />
                             </div>
-                              <div className='grid grid-cols-4 items-center gap-4'>
+                            <div className='grid grid-cols-4 items-center gap-4'>
                                 <Label htmlFor="number" className="text-right">Experience</Label>
                                 <Input
                                     id="experience"
@@ -131,6 +133,17 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     className="col-span-3"
                                 />
                             </div>
+                            <div className='grid grid-cols-4 items-center gap-4'>
+                                <Label htmlFor="bio" className="text-right">expectedSalary</Label>
+                                <Input
+                                    id="expectedSalary"
+                                    name="expectedSalary"
+                                    value={input.expectedSalary}
+                                    onChange={changeEventHandler}
+                                    className="col-span-3"
+                                />
+                            </div>
+
                             <div className='grid grid-cols-4 items-center gap-4'>
                                 <Label htmlFor="skills" className="text-right">Skills</Label>
                                 <Input

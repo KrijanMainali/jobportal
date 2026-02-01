@@ -79,13 +79,19 @@ const JobDescription = () => {
                 <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-purple-700 dark:text-purple-300'>{singleJob?.title}</span></h1>
                 <h1 className='font-bold my-1'>location: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.location}</span></h1>
                 <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.description}</span></h1>
-                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.experience}yrs</span></h1>
+                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.experienceLevel}yrs</span></h1>
                 <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.salary}LPA</span></h1>
                 <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'> {singleJob?.applications?.length}</span></h1>
                 <h1 className='font-bold my-1'>Posted date: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.createdAt.split("T")[0]}</span></h1>
+                <h1 className='font-bold my-1'>Position: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.position}</span></h1>
+                <h1 className='font-bold my-1'>JobType: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.jobType}</span></h1>
+                <h1 className='font-bold my-1'>Requirements: <span className='pl-4 font-normal  text-purple-700 dark:text-purple-300'>{singleJob?.requirements}</span></h1>
             </div>
-
         </div>
+
+
+
+
     )
 }
 

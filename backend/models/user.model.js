@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
     experience: {
         type: Number,
         required: true,
+    },
+    expectedSalary:{
+        type : Number,
+        required : true
     }
 
 }, { timestamps: true });
