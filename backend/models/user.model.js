@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
             default: ""
         }
     },
+    experience: {
+        type: Number,
+        required: true,
+    }
 
 }, { timestamps: true });
 

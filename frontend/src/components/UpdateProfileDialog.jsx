@@ -20,7 +20,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         phoneNumber: user?.phoneNumber || "",
         bio: user?.profile?.bio || "",
         skills: user?.profile?.skills?.map(skill => skill) || "",
-        file: user?.profile?.resume || ""
+        file: user?.profile?.resume || "",
+        experience:user?.experience || "",
     });
     const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         formData.append("phoneNumber", input.phoneNumber);
         formData.append("bio", input.bio);
         formData.append("skills", input.skills);
+        formData.append("experience", input.experience);
         if (input.file) {
             formData.append("file", input.file);
         }
@@ -105,6 +107,16 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     id="number"
                                     name="number"
                                     value={input.phoneNumber}
+                                    onChange={changeEventHandler}
+                                    className="col-span-3"
+                                />
+                            </div>
+                              <div className='grid grid-cols-4 items-center gap-4'>
+                                <Label htmlFor="number" className="text-right">Experience</Label>
+                                <Input
+                                    id="experience"
+                                    name="experience"
+                                    value={input.experience}
                                     onChange={changeEventHandler}
                                     className="col-span-3"
                                 />
