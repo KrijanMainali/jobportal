@@ -1,16 +1,18 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 export const generatePDF = async (req, res) => {
   try {
     const { html } = req.body;
 
     const browser = await puppeteer.launch({
+      executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
       headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
 
     const page = await browser.newPage();
 
-   await page.setContent(html, { waitUntil: "domcontentloaded" });
+    await page.setContent(html, { waitUntil: "domcontentloaded" });
 
     const pdf = await page.pdf({
       format: "A4",

@@ -40,7 +40,6 @@ app.use('/api/v1/recommendation',recommendationRoute);
 
 
 app.use(express.json({ limit: "10mb" }));
-
 app.use("/api/pdf", pdfRoutes);
 
 
