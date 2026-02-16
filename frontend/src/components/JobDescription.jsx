@@ -7,6 +7,7 @@ import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant';
 import { setSingleJob } from '@/redux/jobSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
+import NavBar from './shared/NavBar';
 
 const JobDescription = () => {
 
@@ -57,6 +58,7 @@ const JobDescription = () => {
 
     return (
         <div className='max-w-7xl mx-auto my-10  '>
+            <NavBar/>
             <div className='flex items-center justify-between '>
                 <div>
                     <h1 className='font-bold text-xl'>{singleJob?.title}</h1>

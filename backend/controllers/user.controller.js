@@ -124,12 +124,18 @@ export const logout = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
     try {
-        const { fullname, email, phoneNumber, bio, skills , experience,expectedSalary } = req.body;
+        const { fullname, email, phoneNumber, bio, skills, experience, expectedSalary } = req.body;
 
         const file = req.file;
         // cloudinary 
         const fileUri = getDataUri(file);
-        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
+            resource_type: "image",   // ✅ allow inline PDF preview
+            format: "pdf",            // ✅ force PDF handling
+            access_mode: "public"
+        });
+
+
 
 
         let skillsArray;
@@ -152,13 +158,15 @@ export const updateProfile = async (req, res) => {
         if (bio) user.profile.bio = bio
         if (skills) user.profile.skills = skillsArray
         if (experience) user.experience = experience
-        if(expectedSalary) user.expectedSalary =expectedSalary
+        if (expectedSalary) user.expectedSalary = expectedSalary
+
 
         // resume
         if (cloudResponse) {
-            user.profile.resume = cloudResponse.secure_url // save the cloudinary url
-            user.profile.resumeOriginalName = file.originalname // Save the original file name
+            user.profile.resumeView = cloudResponse.secure_url;
+            user.profile.resumeOriginalName = file.originalname;
         }
+
 
 
         await user.save();
