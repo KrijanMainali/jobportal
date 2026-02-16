@@ -8,10 +8,13 @@ import companyRoute from "./routes/comapny.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import recommendationRoute from "./routes/recommendation.route.js"
+import pdfRoutes from "./routes/pdf.routes.js";
+
 
 
 
 const app = express();
+
 
 
 app.use(express.json());
@@ -34,6 +37,10 @@ app.use('/api/v1/company',companyRoute);
 app.use('/api/v1/job',jobRoute);
 app.use('/api/v1/application',applicationRoute);
 app.use('/api/v1/recommendation',recommendationRoute);
+
+
+app.use(express.json({ limit: "10mb" }));
+app.use("/api/pdf", pdfRoutes);
 
 
 app.listen(PORT, ()=>{

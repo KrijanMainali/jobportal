@@ -16,6 +16,7 @@ import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import PostJob from './components/admin/PostJobs'
 import RecommendationPage from './components/RecommendationPage'
+import ResumeBuilder from './components/ResumeBuilder'
 
 const appRouter = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/getRecommendations",
     element : <RecommendationPage/>
+  },
+  {
+    path:"/resumebuilder",
+    element:<ResumeBuilder/>
   },
 
   //admin
