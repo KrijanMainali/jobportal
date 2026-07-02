@@ -10,12 +10,13 @@ import axios from 'axios'
 import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 import DarkMode from '../ui/darkMode'
+import logo from "../../assets/logo.png";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 const NavBar = () => {
@@ -42,9 +43,13 @@ const NavBar = () => {
             <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4">
 
                 {/* Logo */}
-                <h1 className="text-2xl font-bold">
-                    <Link to="/">Job<span className="text-[#F83002]">Mitra</span></Link>
-                </h1>
+                <Link to="/" className="flex items-center">
+                    <img
+                        src={logo}
+                        alt="JobMitra Logo"
+                        className="h-50 w-auto"
+                    />
+                </Link>
 
                 <div className="flex items-center gap-12">
                     <ul className="flex font-medium items-center gap-5">

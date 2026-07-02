@@ -1,5 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 const Footer = () => {
   return (
@@ -9,7 +11,13 @@ const Footer = () => {
 
         {/* About Section */}
         <div>
-          <h1 className='text-xl font-bold mb-4'>Job<span className='text-[#F83002]'>Mitra</span></h1>
+          <Link to="/" className="flex justify-between items-center">
+            <img
+              src={logo}
+              alt="JobMitra Logo"
+              className="w-50 -mt-20"
+            />
+          </Link>
           <p className="text-gray-900 dark:text-gray-100">
             JobMitra helps you find and apply to your dream jobs in Nepal easily. Stay updated with latest job openings and opportunities.
           </p>
