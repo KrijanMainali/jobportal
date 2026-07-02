@@ -16,6 +16,18 @@ const Jobs = () => {
     useEffect(() => {
         if (searchedQuery) {
             const filteredJobs = allJobs.filter((job) => {
+                  // Salary Filter
+            if (searchedQuery === "0-40k") {
+                return job.salary >= 0 && job.salary <= 40000;
+            }
+
+            if (searchedQuery === "42-1lakh") {
+                return job.salary > 40000 && job.salary <= 100000;
+            }
+
+            if (searchedQuery === "1lakh to 5lakh") {
+                return job.salary > 100000 && job.salary <= 500000;
+            }
                 return job.title.toLowerCase().includes(searchedQuery.toLowerCase()) ||
                     job.description.toLowerCase().includes(searchedQuery.toLowerCase()) ||
                     job.location.toLowerCase().includes(searchedQuery.toLowerCase())
