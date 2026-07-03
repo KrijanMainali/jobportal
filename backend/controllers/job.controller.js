@@ -135,3 +135,65 @@ export const getAdminJobs = async(req,res)=>{
         })       
     }
 }
+
+
+export const updateJob = async (req, res) => {
+    try {
+        const jobId = req.params.id;
+
+        const {
+            title,
+            description,
+            jobType,
+            requirements,
+            salary,
+            location,
+            experience,
+            position,
+            companyId
+        } = req.body;
+
+        const job = await Job.findById(jobId);
+
+        if (!job) {
+            return res.status(404).json({
+                message: "Job not found",
+                success: false
+            });
+        }
+
+        //  Only allow the creator to edit
+        if (job.created_by.toString() !== req.id) {
+            return res.status(403).json({
+                message: "You are not authorized to edit this job",
+                success: false
+            });
+        }
+
+        job.title = title ?? job.title;
+        job.description = description ?? job.description;
+        job.jobType = jobType ?? job.jobType;
+        job.requirements = requirements
+            ? requirements.split(",").map((item) => item.trim())
+            : job.requirements;
+        job.salary = salary ? Number(salary) : job.salary;
+        job.location = location ?? job.location;
+        job.experienceLevel = experience ?? job.experienceLevel;
+        job.position = position ?? job.position;
+        job.company = companyId ?? job.company;
+
+        await job.save();
+
+        return res.status(200).json({
+            message: "Job updated successfully",
+            job,
+            success: true
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message,
+            success: false
+        });
+    }
+};

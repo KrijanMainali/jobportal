@@ -20,6 +20,7 @@ import ResumeBuilder from './components/ResumeBuilder'
 import About from './components/pages/About'
 import Contact from './components/pages/Contact'
 import Training from './components/pages/Training'
+import EditJobs from './components/admin/EditJobs'
 
 const appRouter = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/admin/jobs/:id/applicants",
     element: <ProtectedRoute><Applicants /></ProtectedRoute>
+  },
+  {
+     path: "/admin/jobs/edit/:id",
+     element: <ProtectedRoute><EditJobs /></ProtectedRoute>
   }
 
 ])
